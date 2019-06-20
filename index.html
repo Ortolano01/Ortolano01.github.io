@@ -5,6 +5,8 @@
     quando raggiungi un score pari a 1000 metti la mummia come avversario
 -->
 
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,28 +14,43 @@
         <title>Primo videoGame con Phaser 3</title>
         <script type="text/javascript" src="./phaser.js"></script>
         <script type="text/javascript" src="./jquery.js"></script>
+
         <style type="text/css">
             body {margin: 0;}
         </style>
     </head>
     <body>
         <!-- configurazione iniziale di gioco -->
-        <script type="text/javascript">
+        <script type="module">
         /* la prima opzione stabilisce il rendering della zona in cui costruiremo il gico
             width e height servono per stabilire le misure
-
         */
+        import rexVirtualJoyStick from './plugins/virtualjoystick.js';
+        import VirtualJoyStickPlugin from './plugins/virtualjoystick-plugin.js';
+
+        //console.log(rexVirtualJoyStick);
+        
+        console.log(rexVirtualJoyStick);
+
         var config = {
             type: Phaser.AUTO,
             width: 800,
             height: 600,
             physics:{
                 default:'arcade' ,
+                
                 arcade: {
                     gravity:{y: 300},
                     debug:false
                 }
             },
+            plugins: {
+                    global: [{
+                        key: 'rexVirtualJoyStick',
+                        plugin: VirtualJoyStickPlugin,
+                        start: true
+                    },
+                ]},
             scene: {
                 preload: preload,
                 create: create,
@@ -71,6 +88,7 @@
         var scoreText;
         var bombs;
         var healthbar;
+        var joystick; 
         
         function create()
         {
@@ -79,6 +97,11 @@
             //console.log(this);
             this.add.image(400,300,'sky'); 
             this.input.on('pointerup', function () {if(hearts.countActive(true) === 0) window.location.reload();}, this);
+            
+
+
+
+
 
             //oggetto per realizzare il loop della canzone
             var loopMarker = {
@@ -114,6 +137,19 @@
 
             //con set scale raddoppiamo la dimensione e refreshBody gli diciamo la dimensione aggiornata
             platforms.create(400,568,'ground').setScale(2).refreshBody(); 
+
+            joystick = this.plugins.get('rexVirtualJoyStick').add(this, {
+                x: 700,
+                y: 500,
+                radius: 100,
+                base: this.add.circle(0, 0, 50, 0x888888),
+                thumb: this.add.circle(0, 0, 25, 0xcccccc),
+                // dir: '8dir',
+                // forceMin: 16,
+                // fixed: true,
+                // enable: true
+            })
+
 
             /* platforms.create(1200,568,'ground').setScale(2).refreshBody();  */
             platforms.create(600,400,'ground');
@@ -189,7 +225,7 @@
             scoreText = this.add.text(16,16,'score: 0', {fontSize: '32px',fill:'#000'}).setScrollFactor(0);
             bombs = this.physics.add.group();
             this.physics.add.collider(bombs, platforms);
-            sprite_bomb = this.physics.add.collider(player, bombs, hitBomb, null, this);
+            var sprite_bomb = this.physics.add.collider(player, bombs, hitBomb, null, this);
             
 
             function hitBomb(player, bomb){
@@ -244,12 +280,19 @@
         //update
         function update()
         {
-            if(cursors.left.isDown)
+            var cursorKeys = joystick.createCursorKeys();
+
+            var leftKeyDown = cursorKeys.left.isDown;
+            var rightKeyDown = cursorKeys.right.isDown;
+            var upKeyDown = cursorKeys.up.isDown;
+            var downKeyDown = cursorKeys.down.isDown;
+
+            if(cursors.left.isDown || leftKeyDown)
             {
                 player.setVelocityX(-160);
                 //attivo l animazione di sinistra
                 player.anims.play('left',true);
-            }else if(cursors.right.isDown)
+            }else if(cursors.right.isDown || rightKeyDown)
             {
                 player.setVelocityX(160);
                 player.anims.play('right',true);
@@ -259,7 +302,7 @@
                 player.anims.play('turn');
             }
 
-            if(cursors.up.isDown  && player.body.touching.down )
+            if((cursors.up.isDown || upKeyDown) && player.body.touching.down  )
             {player.setVelocityY(-500);}
         }
         </script>
