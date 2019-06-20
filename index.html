@@ -76,7 +76,7 @@
         {
             /* le immaginni hanno come punto di riferimento il centro e non l'angolo sinistro 
             l'ordine in cuii verngono aggiunte corrisponde a quello in cui vengono visualizzate */
-            console.log(this);
+            //console.log(this);
             this.add.image(400,300,'sky'); 
             this.input.on('pointerup', function () {if(hearts.countActive(true) === 0) window.location.reload();}, this);
 
@@ -238,8 +238,8 @@
             /* this.cameras.main.startFollow(player, true); */
             /* this.cameras.main.setZoom(4); */
 
-            console.log(player.x);
-            console.log(player.y);
+            //console.log(player.x);
+            //console.log(player.y);
         }
         //update
         function update()
