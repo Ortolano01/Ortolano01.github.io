@@ -89,6 +89,7 @@
         var bombs;
         var healthbar;
         var joystick; 
+        var gameOver = false;
         
         function create()
         {
@@ -286,6 +287,9 @@
             var rightKeyDown = cursorKeys.right.isDown;
             var upKeyDown = cursorKeys.up.isDown;
             var downKeyDown = cursorKeys.down.isDown;
+            
+            if(gameOver)
+            {return}
 
             if(cursors.left.isDown || leftKeyDown)
             {
