@@ -4,13 +4,10 @@
     fai lampeggiare il personaggio dopo che è stato colpito da una bomba (animazione)
     quando raggiungi un score pari a 1000 metti la mummia come avversario
 -->
-
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
+        <meta charset="UTF-8"/>
         <title>Primo videoGame con Phaser 3</title>
         <script type="text/javascript" src="./phaser.js"></script>
         <script type="text/javascript" src="./jquery.js"></script>
@@ -28,186 +25,245 @@
     <body>
         <!-- configurazione iniziale di gioco -->
         <script type="module">
-        /* la prima opzione stabilisce il rendering della zona in cui costruiremo il gico
-            width e height servono per stabilire le misure
-        */
-        import rexVirtualJoyStick from './plugins/virtualjoystick.js';
-        import VirtualJoyStickPlugin from './plugins/virtualjoystick-plugin.js';
-
-        //console.log(rexVirtualJoyStick);
-        
-        console.log(rexVirtualJoyStick);
-
-        var config = {
-            type: Phaser.AUTO,
-            width: 800,
-            height: 600,
-            physics:{
-                default:'arcade' ,
+            /* la prima opzione stabilisce il rendering della zona in cui costruiremo il gico
+                width e height servono per stabilire le misure
+            */
+            import rexVirtualJoyStick from './plugins/virtualjoystick.js';
+            import VirtualJoyStickPlugin from './plugins/virtualjoystick-plugin.js';
+    
+            //console.log(rexVirtualJoyStick);
+            
+            //console.log(rexVirtualJoyStick);
+    
+            var config = {
+                type: Phaser.AUTO,
+                width: 800,
+                height: 600,
+                physics:{
+                    default:'arcade' ,
+                    arcade: {
+                        gravity:{y: 300},
+                        debug:false
+                    }
+                },
+                plugins: {
+                        global: [{
+                            key: 'rexVirtualJoyStick',
+                            plugin: VirtualJoyStickPlugin,
+                            start: true
+                        },
+                    ]},
+                scene: {
+                    preload: preload,
+                    create: create,
+                    update: update
+                },
                 
-                arcade: {
-                    gravity:{y: 300},
-                    debug:false
-                }
-            },
-            plugins: {
-                    global: [{
-                        key: 'rexVirtualJoyStick',
-                        plugin: VirtualJoyStickPlugin,
-                        start: true
-                    },
-                ]},
-            scene: {
-                preload: preload,
-                create: create,
-                update: update
-            } 
-        };
-        /* sfondo nero configurato dal rendering AUTO */
-        var game = new Phaser.Game(config);
-        /* prima di caricare il gioco dichiariamo quali risorse ci servono....
-            questo è il compito del metodo preload */
-        function preload()
-        {
-            /* uso this per indicare l'oggetto all'interno del quale ho definito questo metodo */
-            /*NB========>>>>>> cercadi caricare altre immagin oltre a queste */
-            this.load.image('sky','assets/sky.png');
-            this.load.image('heart','assets/heart.png')
-            this.load.image('ground','assets/platform.png');
-            this.load.image('star', 'assets/star.png');
-            this.load.image('bomb', 'assets/bomb.png');
-            this.load.image('gameOver','assets/gameOver.png')
-            this.load.audio('starSound','assets/coin.wav');
-            this.load.audio('bombSound','assets/fireworks.wav');
-            this.load.audio('soundTrack','assets/SoundTrack.mp3');
-            this.load.spritesheet('dude','assets/dude.png',
-            {frameWidth: 32, frameHeight: 48});
-        }
-        /* è arrivato il momento di inserire le foto scaricate... */
-        var contacolpi = 0;
-        var platforms;
-        var player;
-        var cursors;
-        var hearts;
-        var stars;
-        var score = 0;
-        var scoreText;
-        var bombs;
-        var healthbar;
-        var joystick; 
-        var gameOver = false;
-        
-        function create()
-        {
-            /* le immaginni hanno come punto di riferimento il centro e non l'angolo sinistro 
-            l'ordine in cuii verngono aggiunte corrisponde a quello in cui vengono visualizzate */
-            //console.log(this);
-            this.add.image(400,300,'sky'); 
-            this.input.on('pointerup', function () {if(hearts.countActive(true) === 0) window.location.reload();}, this);
-            
-
-
-
-
-
-            //oggetto per realizzare il loop della canzone
-            var loopMarker = {
-                name: 'loop',
-                start: 0,
-                duration: 110,
-                config: {
-                    loop: true
-                }
             };
-
-            var soundTrack = this.sound.add('soundTrack');
-            soundTrack.addMarker(loopMarker);
-            soundTrack.play('loop'); 
-            //oppure: this.add.image(0,0,'sky').setOrigin(0,0);
-            /* this.add.image(1200,300,'sky'); */
-
-            //this.add.image(400,300,'star');
-            //cambia la posizione della camera con il world che ha un posiz negativa....
-            /* this.cameras.main.setBounds(0,0, 1600,600);
-            this.physics.world.setBounds(0,0, 1600,600); */
-
-
-            //si definiscono in gruppi perche poi si possono dare delle caratteristiche comuni per tutti i componenti statici
-            //corpo statico corpo che non si muove come in questo caso le piattaforme (mattoni di super mario)
-            //corpo dinamico corpo che si muove (mario che corre) 
-            platforms = this.physics.add.staticGroup();
-            hearts = this.physics.add.staticGroup();
-
-            var vita1 = hearts.create(650,35,'heart');
-            var vita2 = hearts.create(700,35,'heart');
-            var vita3 = hearts.create(750,35,'heart');
-
-            //con set scale raddoppiamo la dimensione e refreshBody gli diciamo la dimensione aggiornata
-            platforms.create(400,568,'ground').setScale(2).refreshBody(); 
-
-            joystick = this.plugins.get('rexVirtualJoyStick').add(this, {
-                x: 700,
-                y: 500,
-                radius: 100,
-                base: this.add.circle(0, 0, 50, 0x888888),
-                thumb: this.add.circle(0, 0, 25, 0xcccccc),
-                // dir: '8dir',
-                // forceMin: 16,
-                // fixed: true,
-                // enable: true
-            })
-
-
-            /* platforms.create(1200,568,'ground').setScale(2).refreshBody();  */
-            platforms.create(600,400,'ground');
-            platforms.create(50,250,'ground');
-            platforms.create(750,220,'ground');
-
-            //costruzione giocatore
-            player = this.physics.add.sprite(100, 450, 'dude');
-            player.setCollideWorldBounds(true);
-            player.setBounce(0.2);
+            /* sfondo nero configurato dal rendering AUTO */
+            var game = new Phaser.Game(config);
+            /* prima di caricare il gioco dichiariamo quali risorse ci servono....
+                questo è il compito del metodo preload */
+        
+                function preload()
+            {
+                /* uso this per indicare l'oggetto all'interno del quale ho definito questo metodo */
+                /*NB========>>>>>> cerca di caricare altre immagin oltre a queste fatto ==> OK*/ 
+                this.load.image('sky','assets/sky.png');
+                this.load.image('heart','assets/heart.png')
+                this.load.image('ground','assets/platform.png');
+                this.load.image('star', 'assets/star.png');
+                this.load.image('bomb', 'assets/bomb.png');
+                this.load.image('gameOver','assets/gameOver.png');
+                this.load.image('button','assets/immagine.png');
+                this.load.audio('starSound','assets/coin.wav');
+                this.load.audio('bombSound','assets/fireworks.wav');
+                this.load.audio('soundTrack','assets/SoundTrack.mp3');
+                this.load.spritesheet('dude','assets/dude.png',
+                {frameWidth: 32, frameHeight: 48});
+            }
+            /* è arrivato il momento di inserire le foto scaricate... */
+            var contacolpi = 0;
+            var platforms;
+            var player;
+            var cursors;
+            var hearts;
+            var stars;
+            var score = 0;
+            var scoreText;
+            var bombs;
+            var healthbar;
+            var joystick; 
+            var sprite_bomb;
+            var vita1;
+            var vita2;
+            var vita3;
+            var image;
+            var gameOver = false;
             
-            //gravita del personaggio
-            player.body.setGravityY(300);
-            //specifico che i due oggetti devono collidere
-            this.physics.add.collider(player,platforms)
+            function create()
+            {
+                /* le immaginni hanno come punto di riferimento il centro e non l'angolo sinistro 
+                l'ordine in cuii verngono aggiunte corrisponde a quello in cui vengono visualizzate */
+                //console.log(this);
+                this.add.image(400,300,'sky'); 
 
+                //metodo per far ripartire l'app dopo il gameOver.
+                this.input.on('pointerup', function () {
+                if(hearts.countActive(true) === 0) window.location.reload();},
+                this);
 
-            //creo le diverse animazioni
-            this.anims.create({
-                key: 'left',
-                frames: this.anims.generateFrameNumbers('dude',{start: 0, end: 3}),
-                frameRate: 10,
-                repete: -1
-            });
+                //oggetto per realizzare il loop della canzone
+                /* var loopMarker = {
+                    name: 'loop',
+                    start: 0,
+                    duration: 110,
+                    config: {
+                        loop: true
+                    }
+                };
+    
+                var soundTrack = this.sound.add('soundTrack');
+                soundTrack.addMarker(loopMarker);
+                soundTrack.play('loop');  */
 
-            this.anims.create({
-                key: 'turn',
-                frames: [{key: 'dude', frame: 4}],
-                frameRate: 20
-            });
+                //oppure: this.add.image(0,0,'sky').setOrigin(0,0);
+                /* this.add.image(1200,300,'sky'); */
+    
+                //this.add.image(400,300,'star');
+                //cambia la posizione della camera con il world che ha un posiz negativa....
+                /* this.cameras.main.setBounds(0,0, 1600,600);
+                this.physics.world.setBounds(0,0, 1600,600); */
+    
+                //si definiscono in gruppi perche poi si possono dare delle caratteristiche comuni per tutti i componenti statici
+                //corpo statico corpo che non si muove come in questo caso le piattaforme (mattoni di super mario)
+                //corpo dinamico corpo che si muove (mario che corre) 
+                platforms = this.physics.add.staticGroup();
+                hearts = this.physics.add.staticGroup();
+    
+                vita1 = hearts.create(650,35,'heart');
+                vita2 = hearts.create(700,35,'heart');
+                vita3 = hearts.create(750,35,'heart');
+    
+                //con set scale raddoppiamo la dimensione e refreshBody gli diciamo la dimensione aggiornata
+                platforms.create(400,568,'ground').setScale(2).refreshBody(); 
+                image = this.add.image(100,500,'button').setInteractive();
+                image.on('pointerdown', function () {player.setVelocityY(-500);});
+                joystick = this.plugins.get('rexVirtualJoyStick').add(this, {
+                    x: 700,
+                    y: 500,
+                    radius: 100,
+                    base: this.add.circle(0, 0, 50, 0x888888),
+                    thumb: this.add.circle(0, 0, 25, 0xcccccc),
+                    // dir: '8dir',
+                    // forceMin: 16,
+                    // fixed: true,
+                    // enable: true
+                })
+    
+                /* platforms.create(1200,568,'ground').setScale(2).refreshBody();  */
+                platforms.create(600,400,'ground');
+                platforms.create(50,250,'ground');
+                platforms.create(750,220,'ground');
+    
+                //costruzione giocatore
+                player = this.physics.add.sprite(200, 450, 'dude');
+                player.setCollideWorldBounds(true);
+                player.setBounce(0.2);
+                
+                //gravita del personaggio
+                player.body.setGravityY(300);
+                //specifico che i due oggetti devono collidere
+                this.physics.add.collider(player,platforms)
+    
+    
+                //creo le diverse animazioni
+                this.anims.create({
+                    key: 'left',
+                    frames: this.anims.generateFrameNumbers('dude',{start: 0, end: 3}),
+                    frameRate: 10,
+                    repete: -1
+                });
+    
+                this.anims.create({
+                    key: 'turn',
+                    frames: [{key: 'dude', frame: 4}],
+                    frameRate: 20
+                });
+    
+                this.anims.create({
+                    key:'right',
+                    frames: this.anims.generateFrameNumbers('dude', {start: 5, end: 8}),
+                    frameRate: 10,
+                    repete: -1
+                })
+                
+                cursors = this.input.keyboard.createCursorKeys();
+                //creazione gruppo
+                stars = this.physics.add.group({
+                    key:'star', //immagine del gruppo
+                    repeat: 11,
+                    setXY: {x: 12, y:0, stepX: 70}
+                });
+                //iterazione della creazione delle stelle
+                stars.children.iterate(function(child){
+                    child.setBounceY(Phaser.Math.FloatBetween(0.4,0.8));
+                });
+                this.physics.add.collider(stars,platforms);
+                this.physics.add.overlap(player, stars, collectStar, null, this);
+                
+                //setScrollFactor ti permette di incollare il testo alla camera
+                scoreText = this.add.text(16,16,'score: 0', {fontSize: '32px',fill:'#000'}).setScrollFactor(0);
+                bombs = this.physics.add.group();
+                this.physics.add.collider(bombs, platforms);
+                sprite_bomb = this.physics.add.collider(player, bombs, hitBomb, null, this);
+                /* this.cameras.main.startFollow(player, true); */
+                /* this.cameras.main.setZoom(4); */
+                
+                
+                
 
-            this.anims.create({
-                key:'right',
-                frames: this.anims.generateFrameNumbers('dude', {start: 5, end: 8}),
-                frameRate: 10,
-                repete: -1
-            })
+                //console.log(player.x);
+                //console.log(player.y);
+            }
+            //update
+            function update()
+            {
+                //gestisco il pad
+                var cursorKeys = joystick.createCursorKeys();
+                var leftKeyDown = cursorKeys.left.isDown;
+                var rightKeyDown = cursorKeys.right.isDown;
+                
+                if (gameOver)
+                {
+                    return;
+                }
+    
+                if(cursors.left.isDown || leftKeyDown)
+                {
+                    player.setVelocityX(-160);
+                    //attivo l animazione di sinistra
+                    player.anims.play('left',true);
+                }else if(cursors.right.isDown || rightKeyDown)
+                {
+                    player.setVelocityX(160);
+                    player.anims.play('right',true);
+                }else
+                {
+                    player.setVelocityX(0);
+                    player.anims.play('turn');
+                }
+    
+                if(cursors.up.isDown && player.body.touching.down  )
+                {player.setVelocityY(-500);}
+            }
+
+            //metodi ed eventi
+
+            //restart game after gameOver
             
-            cursors = this.input.keyboard.createCursorKeys();
-            //creazione gruppo
-            stars = this.physics.add.group({
-                key:'star', //immagine del gruppo
-                repeat: 11,
-                setXY: {x: 12, y:0, stepX: 70}
-            });
-            //iterazione della creazione delle stelle
-            stars.children.iterate(function(child){
-                child.setBounceY(Phaser.Math.FloatBetween(0.4,0.8));
-            });
-            this.physics.add.collider(stars,platforms);
-            this.physics.add.overlap(player, stars, collectStar, null, this);
+
+            //metodo richiamato quando il giocatore e la stella si sovrappongono
             function collectStar(player,star)
             {
                 star.disableBody( true,true);
@@ -228,93 +284,49 @@
                     bomb.setVelocity(Phaser.Math.Between(-200,200),20);
                 }
             }
-            //setScrollFactor ti permette di incollare il testo alla camera
-            scoreText = this.add.text(16,16,'score: 0', {fontSize: '32px',fill:'#000'}).setScrollFactor(0);
-            bombs = this.physics.add.group();
-            this.physics.add.collider(bombs, platforms);
-            var sprite_bomb = this.physics.add.collider(player, bombs, hitBomb, null, this);
-            
 
+            //metodo richiamato quando il giocatore e la bomba si toccano
             function hitBomb(player, bomb){
-                //suono che fa capire quando si è toccato una bomba o meno
-                this.sound.play('bombSound');
-                //fornisco 5 secondi di invulnerabilita per evitare che un solo colpo possa togliere le tre vite contemporaneamente
-                //es: quando la bomba veniva dall alto toglieva tutte e tre le vite.
-                sprite_bomb.active = false;
-                window.setTimeout(function(){ sprite_bomb.active = true;}, 5000);  
-               
-                //diminuisco le vite
-                switch(++contacolpi)
-                {
-                    case 1: vita1.disableBody(true,true);break;
-                    case 2: vita2.disableBody(true,true);break;
-                    case 3: vita3.disableBody(true,true);break;
-                }
-
-                //controllo che siano finite
-                switch(hearts.countActive(true))
-                {
-                    case 0:
+                    //suono che fa capire quando si è toccato una bomba o meno
+                    this.sound.play('bombSound');
+                    //fornisco 5 secondi di invulnerabilita per evitare che un solo colpo possa togliere le tre vite contemporaneamente
+                    //es: quando la bomba veniva dall alto toglieva tutte e tre le vite.
+                    sprite_bomb.active = false;
+                    window.setTimeout(function(){ sprite_bomb.active = true;}, 5000);  
+                    
+                    //diminuisco le vite
+                    switch(++contacolpi)
+                    {
+                        case 1: vita1.disableBody(true,true);break;
+                        case 2: vita2.disableBody(true,true);break;
+                        case 3: vita3.disableBody(true,true);break;
+                    }
+    
+                    //controllo che siano finite
+                    switch(hearts.countActive(true))
+                    {
+                        case 0:
+                            this.physics.pause();
+                            player.setTint(0xff0000);
+                            player.anims.play('turn');
+                            gameOver = true;
+                            //metti un delay
+                            this.add.image(400,300,'gameOver')
+                        break;
+    
+                        case 1:
                         this.physics.pause();
-                        player.setTint(0xff0000);
-                        player.anims.play('turn');
-                        gameOver = true;
-                        //metti un delay
-                        
-                        this.add.image(400,300,'gameOver')
-                    break;
-
-                    case 1:
-                    this.physics.pause();
-                    alert("Attento hai solo 1 vita!!!");
-                    this.physics.resume();
-                    break;
-
-
-                    case 2:
-                        player.setTint(0xfd3543);
-                    break;
+                        alert("Attento hai solo 1 vita!!!");
+                        this.physics.resume();
+                        break;
+    
+                        case 2:
+                            player.setTint(0xfd3543);
+                        break;
+                    }
                 }
-            }
-            
-
-            /* this.cameras.main.startFollow(player, true); */
-            /* this.cameras.main.setZoom(4); */
-
-            //console.log(player.x);
-            //console.log(player.y);
-        }
-        //update
-        function update()
-        {
-            var cursorKeys = joystick.createCursorKeys();
-
-            var leftKeyDown = cursorKeys.left.isDown;
-            var rightKeyDown = cursorKeys.right.isDown;
-            var upKeyDown = cursorKeys.up.isDown;
-            var downKeyDown = cursorKeys.down.isDown;
-            
-            if(gameOver)
-            {return}
-
-            if(cursors.left.isDown || leftKeyDown)
-            {
-                player.setVelocityX(-160);
-                //attivo l animazione di sinistra
-                player.anims.play('left',true);
-            }else if(cursors.right.isDown || rightKeyDown)
-            {
-                player.setVelocityX(160);
-                player.anims.play('right',true);
-            }else
-            {
-                player.setVelocityX(0);
-                player.anims.play('turn');
-            }
-
-            if((cursors.up.isDown || upKeyDown) && player.body.touching.down  )
-            {player.setVelocityY(-500);}
-        }
-        </script>
+                //metodo per far saltare il player da mobile
+                
+            </script> 
     </body>
 </html>
