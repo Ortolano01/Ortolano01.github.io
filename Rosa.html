@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Jekyll v3.8.6">
+        <title>AC Milan</title>
+        <link rel="icon" href="Resources/AC_Milan.ico">
+
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/jumbotron/">
+    
+        <!--Scripts-->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <!-- Custom styles for this template -->
+        <link href="Stili.css" rel="stylesheet">
+
+        <!--Font awesome css-->
+        <link rel="stylesheet" href="fontawesome-free-5.12.1-web/css/all.css">
+      </head>
+
+    <body>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <img src="Resources/AC_Milan.ico" width="30" height="30" class="d-inline-block align-top">
+            <a class="navbar-brand text-white" href="Milan.html">AC Milan</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link text-white" href="Rosa.html">Rosa <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="Storia.html">Storia</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="Quiz.html">Quiz</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Cosa Visitare
+                  </a>
+                  <div class="dropdown-menu dropdown_menu_background" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="SanSiro.html">San Siro</a>
+                    <a class="dropdown-item" href="Milanello.html">Milanello</a>
+                    <a class="dropdown-item" href="CasaMilan.html">Casa Milan</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+        </nav> 
+        <!--Navbar spacing-->
+        <div id="Nav_Spacing"></div>
+        <!--Link con wikipedia con un click-->
+        <!--Rosa del Milan-->
+        <main role="main" class="container">
+            <div class="container">
+              <h1 class="display-4 text-center Title_Spacing">La Rosa Rossonera</h1>
+              <table class="table table-hover">
+                <!--Table First Row Spacing-->
+                <thead id="T_FirstRow">
+                  <tr class="text-white">
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Cognome</th>
+                    <th scope="col">Presenze</th>
+                    <th scope="col">Gol</th>
+                    <th scope="col">Punti (media)</th>
+                  </tr>
+                </thead>
+              
+                <tbody>
+                    <tr class="bg-danger">
+                        <td colspan="3"><i class="fas fa-hand-paper text-white"></i></td>
+                        <td class="text-white">Portieri</td>
+                        <td></td>
+                        <td>
+                          <div class="row">
+                              <div class="col-md-8"></div>
+                              <div class="col-md-4"><i class="fas fa-hand-paper text-white"></i></div>
+                          </div>
+                          
+                        </td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Asmir_Begovi%C4%87','_blank')" >
+                        <th  scope="row">1</th>
+                          <td>Asmir</td>
+                          <td>Begovic</td>
+                          <td>1</td>
+                          <td>0</td>
+                          <td>1</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Antonio_Donnarumma','_blank')">
+                        <th scope="row">90</th>
+                        <td>Antonio</td>
+                        <td>Donnarumma</td>
+                        <td>3</td>
+                        <td>0</td>
+                        <td>3</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Gianluigi_Donnarumma','_blank')">
+                        <th scope="row">99</th>
+                        <td>Gianluigi</td>
+                        <td>Donnarumma</td>
+                        <td>190</td>
+                        <td>0</td>
+                        <td>1,66</td>
+                    </tr>
+                    <tr class="bg-success">
+                      <td colspan="3"><i class="fas fa-exclamation-triangle text-white"></i></td>
+                      <td class="text-white">Difensori</td>
+                      <td></td>
+                      <td>
+                        <div class="row">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4"><i class="fas fa-exclamation-triangle text-white"></i></div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Davide_Calabria','_blank')">
+                      <th scope="row">2</th>
+                      <td>Davide</td>
+                      <td>Calabria</td>
+                      <td>101</td>
+                      <td>2</td>
+                      <td>1,57</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Andrea_Conti_(calciatore_1994)','_blank')">
+                      <th scope="row">12</th>
+                      <td>Andrea</td>
+                      <td>Conti</td>
+                      <td>37</td>
+                      <td>0</td>
+                      <td>1,78</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/L%C3%A9o_Duarte','_blank')">
+                      <th scope="row">43</th>
+                      <td>Lèo</td>
+                      <td>Duarte</td>
+                      <td>5</td>
+                      <td>0</td>
+                      <td>1,20</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Matteo_Gabbia','_blank')">
+                      <th scope="row">46</th>
+                      <td>Matteo</td>
+                      <td>Gabbia</td>
+                      <td>4</td>
+                      <td>0</td>
+                      <td>2,5</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Theo_Hern%C3%A1ndez','_blank')">
+                      <th scope="row">19</th>
+                      <td>Theo</td>
+                      <td>Hernandez</td>
+                      <td>24</td>
+                      <td>6</td>
+                      <td>1,54</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Diego_Laxalt','_blank')">
+                      <th scope="row">93</th>
+                      <td>Diego</td>
+                      <td>Laxalt</td>
+                      <td>30</td>
+                      <td>0</td>
+                      <td>1,73</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Simon_Kj%C3%A6r','_blank')">
+                      <th scope="row">24</th>
+                      <td>Simon</td>
+                      <td>Kjaer</td>
+                      <td>7</td>
+                      <td>0</td>
+                      <td>2,29</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Mateo_Musacchio','_blank')">
+                      <th scope="row">22</th>
+                      <td>Mateo</td>
+                      <td>Musacchio</td>
+                      <td>73</td>
+                      <td>2</td>
+                      <td>1,71</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Alessio_Romagnoli','_blank')">
+                      <th scope="row">13</th>
+                      <td>Alessio</td>
+                      <td>Romagnoli</td>
+                      <td>180</td>
+                      <td>7</td>
+                      <td>1,68</td>
+                    </tr>
+                    <tr class="bg-warning">
+                      <td colspan="3"><i class="fas fa-cogs text-white"></i></td>
+                      <td class="text-white">Centrocampisti</td>
+                      <td></td>
+                      <td>
+                        <div class="row">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4"><i class="fas fa-cogs text-white"></i></div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Isma%C3%ABl_Bennacer','_blank')">
+                      <th scope="row">4</th>
+                      <td>Ismael</td>
+                      <td>Bennacer</td>
+                      <td>22</td>
+                      <td>0</td>
+                      <td>1,55</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Lucas_Biglia','_blank')">
+                      <th scope="row">20</th>
+                      <td>Lucas</td>
+                      <td>Biglia</td>
+                      <td>63</td>
+                      <td>2</td>
+                      <td>1,68</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Giacomo_Bonaventura','_blank')">
+                      <th scope="row">5</th>
+                      <td>Giacomo</td>
+                      <td>Bonaventura</td>
+                      <td>170</td>
+                      <td>34</td>
+                      <td>1,62</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Hakan_%C3%87alhano%C4%9Flu','_blank')">
+                      <th scope="row">10</th>
+                      <td>Kahan</td>
+                      <td>Calhanoglu</td>
+                      <td>115</td>
+                      <td>17</td>
+                      <td>1,75</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Franck_Kessi%C3%A9','_blank')">
+                      <th scope="row">79</th>
+                      <td>Franck</td>
+                      <td>Kessie</td>
+                      <td>120</td>
+                      <td>13</td>
+                      <td>1,76</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Rade_Kruni%C4%87','_blank')">
+                      <th scope="row">33</th>
+                      <td>Rade</td>
+                      <td>Krunic</td>
+                      <td>11</td>
+                      <td>0</td>
+                      <td>1,64</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Lucas_Paquet%C3%A1','_blank')">
+                      <th scope="row">39</th>
+                      <td>Lucas</td>
+                      <td>Paqueta</td>
+                      <td>36</td>
+                      <td>1</td>
+                      <td>1,61</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Alexis_Saelemaekers','_blank')">
+                      <th scope="row">56</th>
+                      <td>Alexis</td>
+                      <td>Saelemaekers</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    <tr class="bg-primary">
+                      <td colspan="3"><i class="fas fa-futbol text-white"></i></td>
+                      <td class="text-white">Attaccanti</td>
+                      <td></td>
+                      <td>
+                        <div class="row">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4"><i class="fas fa-futbol text-white"></i></div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Samu_Castillejo','_blank')">
+                      <th scope="row">7</th>
+                      <td>Samuel</td>
+                      <td>Castillejo</td>
+                      <td>58</td>
+                      <td>5</td>
+                      <td>1,74</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Rafael_Le%C3%A3o','_blank')">
+                      <th scope="row">17</th>
+                      <td>Rafael</td>
+                      <td>Leao</td>
+                      <td>21</td>
+                      <td>2</td>
+                      <td>1,74</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Zlatan_Ibrahimovi%C4%87','_blank')">
+                      <th scope="row">21</th>
+                      <td>Zlatan</td>
+                      <td>Ibrahimovic</td>
+                      <td>94</td>
+                      <td>59</td>
+                      <td>1,93</td>
+                    </tr>
+                    <tr onclick="window.open('https:/it.wikipedia.org/wiki/Ante_Rebi%C4%87','_blank')">
+                      <th scope="row">18</th>
+                      <td>Ante</td>
+                      <td>Rebic</td>
+                      <td>17</td>
+                      <td>7</td>
+                      <td>1,53</td>
+                    </tr>
+                </tbody>
+              </table>
+              
+              <hr class="featurette-divider">
+            </div> <!--/container-->
+        </main>
+    
+    <footer class="container">
+        <p class="float-right">Serain Hermann</p>
+        <p>© Progetto a scopo scolatisco 2019-2020 (Cliccare per visualizzare più dati sul calciatore)</p> 
+    </footer>
+    </body>
+</html>

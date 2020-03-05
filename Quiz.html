@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Jekyll v3.8.6">
+        <title>AC Milan</title>
+        <link rel="icon" href="Resources/AC_Milan.ico">
+
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/jumbotron/">
+    
+        <!--Scripts-->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="Operations.js"></script>
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <!-- Custom styles for this template -->
+        <link href="Stili.css" rel="stylesheet">
+      </head>
+
+    <body>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <img src="Resources/AC_Milan.ico" width="30" height="30" class="d-inline-block align-top">
+            <a class="navbar-brand text-white" href="Milan.html">AC Milan</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link text-white" href="Rosa.html">Rosa <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="Storia.html">Storia</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="Quiz.html">Quiz</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Cosa Visitare
+                  </a>
+                  <div class="dropdown-menu dropdown_menu_background" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="SanSiro.html">San Siro</a>
+                    <a class="dropdown-item" href="Milanello.html">Milanello</a>
+                    <a class="dropdown-item" href="CasaMilan.html">Casa Milan</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+        </nav> 
+        <!--Navbar spacing-->
+        <div id="Nav_Spacing"></div>
+
+        
+
+        <!--Start quiz-->
+        <main role="main" class="container">
+          <div class="container">
+            <h2 class="featurette-heading display-2 Title_Spacing">Quiz <span class="text-muted">Solo per i più esperti</span></h2>
+            <form>
+              <h3>1. Quanti trofei ha il Milan ?</h3>
+                <div id="1G1G1" class="radio lead">
+                  <label ><input type="radio" id="1G1" name="G1" value="47" checked>47</label>
+                </div>
+                <div id="2G1G1" class="radio lead">
+                <label><input type="radio" id="2G1" name="G1" value="53">53</label><!--Giusta-->
+                </div>
+                <div id="3G1G1" class="radio lead">
+                    <label><input type="radio" id="3G1" name="G1" value="61">61</label>
+                </div>
+                
+
+                <h3 class="Questions_Spacing">2. Quali tra i seguenti trofei non è nella bacheca del Milan? </h3> 
+                <div id="1G2G2" class="radio lead">
+                  <label><input type="radio" id="1G2"  name="G2" value="Coppa UEFA/Europa League" checked>Coppa UEFA/Europa League</label><!--Giusta-->
+                </div>
+                <div id="2G2G2" class="radio lead">
+                <label><input type="radio" id="2G2" name="G2" value="Coppa delle coppe">  Coppa delle coppe </label>
+                </div>
+                <div id="3G2G2" class="radio lead">
+                    <label><input type="radio" id="3G2" name="G2" value="Coppa Latina">  Coppa Latina</label>
+                </div>
+
+                <h3 class="Questions_Spacing">3. Come veniva soprannominato il trio svedese composto da Gunnar Gren, Gunnar Nordahl e Nils Liedholm? </h3> 
+                <div id="1G3G3" class="radio lead">
+                  <label><input type="radio" id="1G3"  name="G3" value="I Giganti" checked>I Giganti</label>
+                </div>
+                <div id="2G3G3" class="radio lead">
+                <label><input type="radio" id="2G3" name="G3" value="Gli attaccanti del Nord">  Gli attaccanti del Nord </label>
+                </div>
+                <div id="3G3G3" class="radio lead">
+                    <label><input type="radio" id="3G3" name="G3" value="GRE-NO-LI">  GRE-NO-LI</label><!--Giusta-->
+                </div>
+
+                <h3 class="Questions_Spacing">4. Come si chiama la mascotte del milan?</h3> 
+                <div id="1G4G4" class="radio lead">
+                  <label><input type="radio" id="1G4"  name="G4" value="Milanello" checked>Milanello</label><!--Giusta-->
+                </div>
+                <div id="2G4G4" class="radio lead">
+                <label><input type="radio" id="2G4" name="G4" value="Diavoletto">Diavoletto</label>
+                </div>
+                <div id="3G4G4" class="radio lead">
+                    <label><input type="radio" id="3G4" name="G4" value="Rossonero">Rossonero</label>
+                </div>
+
+                <h3 class="Questions_Spacing">5. Come si chiamava il primo presidente del Milan?</h3> 
+                <div id="1G5G5" class="radio lead">
+                  <label><input type="radio" id="1G5"  name="G5" value="Alfred Edwars" checked>Alfred Edwars</label><!--Giusta-->
+                </div>
+                <div id="2G5G5" class="radio lead">
+                <label><input type="radio" id="2G5" name="G5" value="Piero Pirelli">Piero Pirelli</label>
+                </div>
+                <div id="3G5G5" class="radio lead">
+                    <label><input type="radio" id="3G5" name="G5" value="Achille Invernizzi">Achille Invernizzi</label>
+                </div>
+
+                <h3 class="Questions_Spacing">6. In che anno Silvio Berlusconi divenne proprietario del Milan?</h3> 
+                <div id="1G6G6" class="radio lead">
+                  <label><input type="radio" id="1G6"  name="G6" value="1983" checked>1983</label>
+                </div>
+                <div id="2G6G6" class="radio lead">
+                <label><input type="radio" id="2G6" name="G6" value="1985">1985</label>
+                </div>
+                <div id="3G6G6" class="radio lead">
+                    <label><input type="radio" id="3G6" name="G6" value="1986">1986</label><!--Giusta-->
+                </div>
+
+                <h3 class="Questions_Spacing">7. Quale fu il primo acquisto dell'Era Berlusconi?</h3> 
+                <div id="1G7G7" class="radio lead">
+                  <label><input type="radio" id="1G7"  name="G7" value="Daniele Massaro" checked>Daniele Massaro</label>
+                </div>
+                <div id="2G7G7" class="radio lead">
+                <label><input type="radio" id="2G7" name="G7" value="Roberto Donadoni">Roberto Donadoni</label><!--Giusta-->
+                </div>
+                <div id="3G7G7"class="radio lead">
+                    <label><input type="radio" id="3G7" name="G7" value="Pietro Paolo Virdis">Pietro Paolo Virdis</label>
+                </div>
+
+                <h3 class="Questions_Spacing">8. Da quale squadra il Milan acquistò il cartellino di Frank Rijkaard nel 1988?</h3> 
+                <div id="1G8G8" class="radio lead">
+                  <label><input type="radio" id="1G8"  name="G8" value="Ajax" checked>Ajax</label>
+                </div>
+                <div id="2G8G8" class="radio lead">
+                <label><input type="radio" id="2G8" name="G8" value="Barcellona">Barcellona</label>
+                </div>
+                <div id="3G8G8" class="radio lead">
+                    <label><input type="radio" id="3G8" name="G8" value="Sporting Lisbona">Sporting Lisbona</label><!--Giusta-->
+                </div>
+
+                <h3 class="Questions_Spacing">9. In che anno è nato Patrick Cutrone?</h3> 
+                <div id="1G9G9" class="radio lead">
+                  <label><input type="radio" id="1G9"  name="G9" value="1997" checked>1997</label>
+                </div>
+                <div id="2G9G9" class="radio lead">
+                <label><input type="radio" id="2G9" name="G9" value="1998">1998</label><!--Giusta-->
+                </div>
+                <div id="3G9G9" class="radio lead">
+                    <label><input type="radio" id="3G9" name="G9" value="1999"> 1999</label>
+                </div>
+
+                <h3 class="Questions_Spacing">10. 1996: contro quale squadra George Weah segnò un gol partendo palla al piede dalla sua area?</h3> 
+                <div id="1G10G10" class="radio lead">
+                  <label><input type="radio" id="1G10"  name="G10" value="Parma" checked>Parma</label>
+                </div>
+                <div id="2G10G10" class="radio lead">
+                <label><input type="radio" id="2G10" name="G10" value="Hellas Verona">Hellas Verona</label><!--Giusta-->
+                </div>
+                <div id="3G10G10" class="radio lead">
+                    <label><input type="radio" id="3G10" name="G10" value="Cremonese">Cremonese</label>
+                </div>
+            </form>
+
+            <hr>
+            <div class="row">
+              <div class="col-sm-10">Se sei sicuro delle tue risposte premi (Devi farle tutte giuste per passare), fai submit</div>
+              <div class="col-sm-2"><button onclick="correggi()" type="button" class="btn btn-primary">Submit</button></div>
+            </div>
+            <hr>
+            <!--Bootsrap Allert-->
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                  <div id="Success_Alert" class="alert alert-success" style="display: none;" role="alert">
+                    <h4 class="alert-heading">Ben Fatto</h4>
+                    <p>Sei riuscito a passare il Quiz!!.</p>
+                    <hr>
+                    <p class="mb-0">Tu si che te ne intendi di milan!!!.</p>
+                  </div>
+                  <div id="UnSuccess_Alert" class="alert alert-danger" style="display: none;" role="alert">
+                    <h4 class="alert-heading">Peccato</h4>
+                    <p>Non Sei riuscito a passare il Quiz.</p>
+                    <hr>
+                    <p class="mb-0">Prova ad informarti meglio la prossima volta ce la farai.</p>
+                  </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+              
+            
+            <hr>
+          </div><!--container-->
+        </main>
+          
+    
+    <footer class="container">
+        <p class="float-right">Serain Hermann</p>
+        <p>© Progetto a scopo scolatisco 2019-2020</p> 
+    </footer>
+    </body>
+</html>
